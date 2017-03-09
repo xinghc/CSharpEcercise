@@ -1,0 +1,17 @@
+﻿<Page
+    x:Class="MQTTSubApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MQTTSubApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Height="477.828" Width="803.077">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="478" Margin="0,0,0,-0.333" VerticalAlignment="Bottom">
+        <Button x:Name="button" Content="Fetch" HorizontalAlignment="Left" Margin="344,417,0,0" VerticalAlignment="Top" Width="111" Height="51" FontSize="20" Click="button_Click"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,10,10,104" VerticalScrollMode="Auto" Name="Scroller">
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="Data will be print in this place" VerticalAlignment="Stretch" MinHeight="50" MinWidth="100" Width="{Binding ViewportWidth, ElementName=Scroller}"/>
+        </ScrollViewer>
+
+    </Grid>
+</Page>
