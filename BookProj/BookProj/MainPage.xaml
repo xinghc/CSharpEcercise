@@ -9,7 +9,7 @@
 
     <Grid x:Name="ContentPanel" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="198,43,146,0" TextWrapping="Wrap" Text="The first App for Windows 10" Height="22" Width="296" FontSize="20" FontFamily="Trebuchet MS" VerticalAlignment="Top" />
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Center" Margin="270,82,253,0" TextWrapping="Wrap" Text="Login Page" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Center" Margin="270,82,253,0" TextWrapping="Wrap" Text="Login Page" VerticalAlignment="Top" FontSize="24" FocusVisualPrimaryBrush="#FFA21111" Foreground="#FFA21111"/>
         <TextBlock x:Name="user_name_textblock" Text="Username" FontSize="16" Width="83" Height="25" Margin="197,159,360,0" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF0728F7"></TextBlock>
         <TextBox x:Name="tbName" HorizontalAlignment="Center" Margin="300,155,194,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
         <TextBlock x:Name="passwd_textblock" Text="Password" FontSize="16" Width="83" Height="25" Margin="197,204,360,0" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF0728F7"/>
