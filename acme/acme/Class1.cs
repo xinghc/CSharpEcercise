@@ -15,10 +15,23 @@ namespace Acme.Collections
         }
         public object Pop()
         {
-            if (top == null) throw new InvalidOperationException();
-            object result = top.data;
-            top = top.next;
+            object result = null;
+            try
+            {
+                if (top == null) throw new InvalidOperationException("No data in stack");
+                result = top.data;
+                top = top.next;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Operation completed");
+            }
             return result;
+
         }
         class Entry
         {

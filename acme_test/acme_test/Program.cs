@@ -18,6 +18,7 @@ namespace acme_test
             Console.WriteLine(s.Pop());
             Console.WriteLine(s.Pop());
             Console.WriteLine(s.Pop());
+            Console.WriteLine(s.Pop());
             Console.Read();
         }
     }
