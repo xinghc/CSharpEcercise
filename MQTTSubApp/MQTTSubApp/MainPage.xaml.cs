@@ -17,6 +17,10 @@ using Windows.UI.Popups;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using System.Diagnostics;
 using System.Text;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using static uPLibrary.Networking.M2Mqtt.Fx;
+using Windows.UI.Core;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -27,9 +31,11 @@ namespace MQTTSubApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public ObservableCollection<MqttItem> mqttItem = new ObservableCollection<MqttItem>();
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            ItemList.DataContext = mqttItem;
         }
 
         private async void button_Click(object sender, RoutedEventArgs e)
@@ -50,16 +56,38 @@ namespace MQTTSubApp
             }
             var messageDialog = new MessageDialog(output_text);
             await messageDialog.ShowAsync();
-
+        }
+        void UpdateMqttList(string new_item)
+        {
+            mqttItem.Add(new MqttItem(new_item));
+            ItemList.SelectedIndex = ItemList.Items.Count - 1;
+            ItemList.ScrollIntoView(ItemList.SelectedItem);
         }
         void client_MqttMsgSubscribed(object sender, MqttMsgSubscribedEventArgs e)
         {
             Debug.WriteLine("Subscribed for id = " + e.MessageId);
         }
-        void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
-        {
-            Debug.WriteLine("Received = " + Encoding.UTF8.GetString(e.Message) + " on topic " + e.Topic);
 
+        async void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
+        {
+            string message = Encoding.UTF8.GetString(e.Message);
+            Debug.WriteLine("Received = " + message + " on topic " + e.Topic);
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                UpdateMqttList(message);
+            });
+        }
+        public class MqttItem {
+            public MqttItem() { }
+            public MqttItem(string input_string)
+            {
+                InputString = input_string;
+            }
+            public string InputString { get; set; }
+            public override string ToString()
+            {
+                return DateTime.Now.ToString("h:mm:ss tt") + ": " + InputString;
+            }
         }
     }
 }
