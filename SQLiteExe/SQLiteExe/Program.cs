@@ -30,13 +30,17 @@ namespace SQLiteExe
             sql_act = "create table if not exists highscores (name varchar(20), score int)";
             SQLiteCommand command = new SQLiteCommand(sql_act, m_dbConnection);
             command.ExecuteNonQuery();
-            sql_act = "insert into highscores (name, score) values ('Me', 3000)";
+            sql_act = "create unique index if not exists data_idx ON highscores(name)";
             command = new SQLiteCommand(sql_act, m_dbConnection);
             command.ExecuteNonQuery();
-            sql_act = "insert into highscores (name, score) values ('Myself', 6000)";
+
+            sql_act = "insert or replace into highscores (name, score) values ('Me', 3000)";
             command = new SQLiteCommand(sql_act, m_dbConnection);
             command.ExecuteNonQuery();
-            sql_act = "insert into highscores (name, score) values ('And I', 9001)";
+            sql_act = "insert or replace into highscores (name, score) values ('Myself', 6000)";
+            command = new SQLiteCommand(sql_act, m_dbConnection);
+            command.ExecuteNonQuery();
+            sql_act = "insert or replace into highscores (name, score) values ('And I', 9001)";
             command = new SQLiteCommand(sql_act, m_dbConnection);
             command.ExecuteNonQuery();
 
