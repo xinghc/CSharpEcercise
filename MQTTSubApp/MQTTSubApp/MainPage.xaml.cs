@@ -21,6 +21,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using static uPLibrary.Networking.M2Mqtt.Fx;
 using Windows.UI.Core;
+using System.Data.SQLite;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
